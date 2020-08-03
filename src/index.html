@@ -4,14 +4,64 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0">
   <title>Stencil Component Starter</title>
+  <style>
+    body {
+      font-family: sans-serif;
+    }
 
+    .side-nav ul{
+      list-style: none;
+    }
+
+    .side-nav li {
+      margin: 1rem 0;
+    }
+
+    .side-nav a {
+      text-decoration: none;
+      color: black
+    }
+  </style>
   <script type="module" src="/build/web-components-stencil.esm.js"></script>
   <script nomodule src="/build/web-components-stencil.js"></script>
 
 </head>
 <body>
+  <button id="side-drawer-btn" style=" background: black; color: white; position: absolute">Open Side Menu</button>
+  <gt-side-drawer title="Main Menu">
+    <nav class="side-nav">
+      <ul>
+        <li><a href="/">A Link</a></li>
+        <li><a href="/">Another Link</a></li>
+        <li><a href="/">A third Link</a></li>
+      </ul>
+    </nav>
+  </gt-side-drawer>
+  <br/>
+  <gt-stock-price stock-symbol="AAPL"></gt-stock-price>
+  <gt-stock-finder></gt-stock-finder>
 
-  <my-component first="Stencil" last="'Don't call me a framework' JS"></my-component>
+  <script>
+    const sideDrawerButton = document.querySelector('#side-drawer-btn');
+    const sideDrawer = document.querySelector('gt-side-drawer');
+    sideDrawerButton.addEventListener('click', () => {
+      if(!sideDrawer.opened) {
+        //sideDrawer.setAttribute('open', true);
+        //sideDrawer.opened = true;
+        sideDrawer.open();
+      }
+      
+    })
+    
+    setTimeout(() => {
+     // sideDrawer.title ="it changed";
+    //sideDrawer.setAttribute('title','change via attribute');
+    }, 3000);
 
+    const stockFinder =document.querySelector('gt-stock-finder');
+    stockFinder.addEventListener('gtSymbolSelected', event => {
+      console.log(event)
+    })
+  </script>
 </body>
 </html>

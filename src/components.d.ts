@@ -6,6 +6,18 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface GtSideDrawer {
+        "open": () => Promise<void>;
+        "opened": boolean;
+        "title": string;
+    }
+    interface GtStockFinder {
+    }
+    interface GtStockPrice {
+        "stockSymbol": string;
+    }
+    interface GtTooltip {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -22,6 +34,30 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLGtSideDrawerElement extends Components.GtSideDrawer, HTMLStencilElement {
+    }
+    var HTMLGtSideDrawerElement: {
+        prototype: HTMLGtSideDrawerElement;
+        new (): HTMLGtSideDrawerElement;
+    };
+    interface HTMLGtStockFinderElement extends Components.GtStockFinder, HTMLStencilElement {
+    }
+    var HTMLGtStockFinderElement: {
+        prototype: HTMLGtStockFinderElement;
+        new (): HTMLGtStockFinderElement;
+    };
+    interface HTMLGtStockPriceElement extends Components.GtStockPrice, HTMLStencilElement {
+    }
+    var HTMLGtStockPriceElement: {
+        prototype: HTMLGtStockPriceElement;
+        new (): HTMLGtStockPriceElement;
+    };
+    interface HTMLGtTooltipElement extends Components.GtTooltip, HTMLStencilElement {
+    }
+    var HTMLGtTooltipElement: {
+        prototype: HTMLGtTooltipElement;
+        new (): HTMLGtTooltipElement;
+    };
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
     var HTMLMyComponentElement: {
@@ -29,10 +65,26 @@ declare global {
         new (): HTMLMyComponentElement;
     };
     interface HTMLElementTagNameMap {
+        "gt-side-drawer": HTMLGtSideDrawerElement;
+        "gt-stock-finder": HTMLGtStockFinderElement;
+        "gt-stock-price": HTMLGtStockPriceElement;
+        "gt-tooltip": HTMLGtTooltipElement;
         "my-component": HTMLMyComponentElement;
     }
 }
 declare namespace LocalJSX {
+    interface GtSideDrawer {
+        "opened"?: boolean;
+        "title"?: string;
+    }
+    interface GtStockFinder {
+        "onGtSymbolSelected"?: (event: CustomEvent<string>) => void;
+    }
+    interface GtStockPrice {
+        "stockSymbol"?: string;
+    }
+    interface GtTooltip {
+    }
     interface MyComponent {
         /**
           * The first name
@@ -48,6 +100,10 @@ declare namespace LocalJSX {
         "middle"?: string;
     }
     interface IntrinsicElements {
+        "gt-side-drawer": GtSideDrawer;
+        "gt-stock-finder": GtStockFinder;
+        "gt-stock-price": GtStockPrice;
+        "gt-tooltip": GtTooltip;
         "my-component": MyComponent;
     }
 }
@@ -55,6 +111,10 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "gt-side-drawer": LocalJSX.GtSideDrawer & JSXBase.HTMLAttributes<HTMLGtSideDrawerElement>;
+            "gt-stock-finder": LocalJSX.GtStockFinder & JSXBase.HTMLAttributes<HTMLGtStockFinderElement>;
+            "gt-stock-price": LocalJSX.GtStockPrice & JSXBase.HTMLAttributes<HTMLGtStockPriceElement>;
+            "gt-tooltip": LocalJSX.GtTooltip & JSXBase.HTMLAttributes<HTMLGtTooltipElement>;
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
         }
     }
