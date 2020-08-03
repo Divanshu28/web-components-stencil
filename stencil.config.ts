@@ -1,19 +1,19 @@
 import { Config } from '@stencil/core';
 
 export const config: Config = {
-  namespace: 'web-components-stencil',
+  namespace: 'gtWebComponents',
   taskQueue: 'async',
   outputTargets: [
     {
       type: 'dist',
-      esmLoaderPath: '../loader'
+      //esmLoaderPath: '../loader'
     },
-    {
-      type: 'docs-readme'
-    },
-    {
-      type: 'www',
-      serviceWorker: null // disable service workers
-    }
+    // {
+    //   type: 'docs-readme'
+    // },
+    // {
+    //   type: 'www',
+    //   serviceWorker: null // disable service workers
+    // }
   ]
 };
